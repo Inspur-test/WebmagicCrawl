@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.inspur.imethod.IhtmlUrlCrawl" >
+    	<insert id="insertHtmlUrl" parameterType="HtmlUrlCrawlBean">
+		upsert into html_urls (child_urls,url,crawled,last_crawl_time) values (#{child_urls},#{url},#{crawled},#{last_crawl_time})
+    	</insert>   
+</mapper>

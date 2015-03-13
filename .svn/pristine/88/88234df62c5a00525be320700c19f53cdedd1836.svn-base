@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<beans>
+
+	<bean name="quartzScheduler"
+		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="DataSource">
+			<ref bean="DataSource" />
+		</property>
+		<property name="applicationContextSchedulerContextKey" value="applicationContextKey" />
+		<property name="configLocation" value="classpath:quartz.properties" />
+		  <property name="jobDetails">
+            <list>
+                <ref bean="complexJobDetail" />
+            </list>
+        </property>
+		<property name="triggers">
+			<list>
+				<ref bean="trigger1" />
+			</list>
+		</property>		
+	</bean>
+
+    <bean name="complexJobDetail"    class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="jobClass" value="com.inspur.quartz.ScheduledJob" />
+        <property name="durability" value="true" />
+        <property name="jobDataAsMap">  
+            <map>
+                <entry key="targetObject" value="anotherBean" />
+                <entry key="targetMethod" value="printAnotherMessage" />
+            </map>
+        </property>
+    </bean>
+
+	<bean id="trigger1" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
+		<property name="jobDetail" ref="complexJobDetail" />
+		<property name="startDelay" value="0" />
+        <property name="repeatInterval" value="1000" />
+	</bean>
+</beans>  

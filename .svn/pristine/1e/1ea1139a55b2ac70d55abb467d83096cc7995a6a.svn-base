@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.inspur.imethod.IhtmlContentCrawl" >   
+    	<insert id="insertContent" parameterType="HtmlContentBean">
+       		upsert into html_content(url,content,last_crawl_time) values (#{url},#{content},#{last_crawl_time})     
+    	</insert>
+    	<insert id="updateHtmlUrl" parameterType="HtmlUpdateUrlCrawlBean">
+       		upsert into html_urls(child_urls,crawled,last_crawl_time) values (#{url},#{crawled},#{last_crawl_time})     
+    	</insert>     
+    	<select id="getURLInfo" resultType="HtmlUrlCrawlBean">   
+        	select * from html_urls where crawled='0' 
+    	</select>     
+</mapper>

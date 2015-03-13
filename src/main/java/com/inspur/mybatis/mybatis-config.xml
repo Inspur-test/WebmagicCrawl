@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+  <settings>   
+       <!-- changes from the defaults for testing --> 
+       <setting name="cacheEnabled" value="false" /> 
+  </settings>   
+  <typeAliases>   
+       <typeAlias alias="HtmlUrlCrawlBean" type="com.inspur.beans.HtmlUrlCrawlBean"/>
+       <typeAlias alias="HtmlContentBean" type="com.inspur.beans.HtmlContentBean"/> 
+       <typeAlias alias="HtmlUpdateUrlCrawlBean" type="com.inspur.beans.HtmlUpdateUrlCrawlBean"/>   
+  </typeAliases>   
+  <environments default="development">
+    <environment id="development">
+      <transactionManager type="JDBC"/>
+      <dataSource type="UNPOOLED">
+        <property name="driver" value="org.apache.phoenix.jdbc.PhoenixDriver"/>
+        <property name="url" value="jdbc:phoenix:diablo"/>
+        <property name="username" value=""/>
+        <property name="password" value=""/>
+      </dataSource>
+    </environment>
+  </environments>
+  <mappers>
+    <mapper resource="com/inspur/mybatis/HtmlUrlMapper.xml"/>
+    <mapper resource="com/inspur/mybatis/HtmlContentMapper.xml"/>
+  </mappers>
+</configuration>

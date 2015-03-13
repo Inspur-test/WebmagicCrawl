@@ -1,0 +1,17 @@
+package com.inspur.test;
+
+import us.codecraft.webmagic.Spider;
+
+import com.inspur.webmagic.crawl.HtmlUrlCrawl;
+import com.inspur.webmagic.pipeline.SaveHtmlUrlPipeline;
+
+public class TestCrawlUrl {
+	public static void main(String[] args){
+			HtmlUrlCrawl htmlurlcrawl=new HtmlUrlCrawl();
+			Spider.create(htmlurlcrawl)
+			.addUrl(args[0])
+			.thread(Integer.parseInt(args[1]))
+			.addPipeline(new SaveHtmlUrlPipeline())
+			.run();
+	}
+}

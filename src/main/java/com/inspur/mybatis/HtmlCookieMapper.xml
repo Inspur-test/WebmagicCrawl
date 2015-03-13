@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.inspur.imethod.IhtmlCookie" >
+    	<select id="GetCountInfo" resultType="HtmlCookieBean">
+		select account_id,password,cookie,website FROM web_account,website where web_id=website.seqid
+    	</select>
+    	
+    	<update id="UpdateCookie" parameterType="HtmlCookieBean">  
+        update web_account SET cookie=#{cookie,javaType=byte[], jdbcType=BLOB, typeHandler=org.apache.ibatis.type.BlobTypeHandler} WHERE account_id=#{account_id}
+      </update>
+</mapper>
